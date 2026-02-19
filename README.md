@@ -15,15 +15,15 @@ Plataforma web desarrollada como proyecto integrador de Programación en Ambient
 ## Equipo de Desarrollo
 
 - **Integrante 1:** Sebastian Galindo Mejia - [@sebastiangalindo01-bittengo](https://github.com/sebastiangalindo01-bittengo)
-- **Integrante 2:** Ruben Dario Garzon Escobar - [@usuario-github](https://github.com/usuario)
-- **Integrante 3:** Daniela Gutierrez Gallego - [@usuario-github](https://github.com/usuario)
+- **Integrante 2:** Ruben Dario Garzon Escobar - [@rubegarzon01-star](https://github.com/rubengarzon01-star)
+- **Integrante 3:** Daniela Gutierrez Gallego - [@danielagutierrez-g](https://github.com/danielagutierrez-g)
 
 ## Tecnologías Utilizadas
 
 - **Frontend:** HTML5, CSS3, JavaScript
 - **Framework CSS:** Bootstrap / Flexbox
 - **Arquitectura:** MVC (Modelo-Vista-Controlador)
-- **Base de Datos:** [PostgeSQL]
+- **Base de Datos:** PostgeSQL
 - **Control de Versiones:** Git & GitHub
 - **Diseño:** Figma
 - **Modelado:** UML
@@ -75,9 +75,9 @@ airline-reservation-system/
 ## Cronograma de Entregas
 
 ### Entrega 1 - 10 de Marzo 2026
-- ✅ Repositorio en GitHub configurado
-- ✅ Modelo de Navegación UML
-- ✅ Prototipos en Figma
+- Repositorio en GitHub configurado
+- Modelo de Navegación UML
+- Prototipos en Figma
 
 ### Entrega 2 - [Fecha por definir]
 - Desarrollo frontend inicial
