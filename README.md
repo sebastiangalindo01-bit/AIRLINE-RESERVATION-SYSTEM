@@ -14,7 +14,7 @@ Plataforma web desarrollada como proyecto integrador de Programación en Ambient
 
 ## Equipo de Desarrollo
 
-- **Integrante 1:** Sebastian Galindo Mejia - [@sebastiangalindo01-bittengo](https://github.com/sebastiangalindo01-bittengo)
+- **Integrante 1:** Sebastian Galindo Mejia - [@sebastiangalindo01-bit](https://github.com/sebastiangalindo01-bit)
 - **Integrante 2:** Ruben Dario Garzon Escobar - [@rubegarzon01-star](https://github.com/rubengarzon01-star)
 - **Integrante 3:** Daniela Gutierrez Gallego - [@danielagutierrez-g](https://github.com/danielagutierrez-g)
 
