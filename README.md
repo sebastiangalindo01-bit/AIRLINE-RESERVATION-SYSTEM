@@ -79,20 +79,12 @@ airline-reservation-system/
 - Modelo de Navegación UML
 - Prototipos en Figma
 
-### Entrega 2 - [Fecha por definir]
-- Desarrollo frontend inicial
-- Implementación de vistas principales
-
-### Entrega Final - [Fecha por definir]
-- Sistema completo con backend
-- Integración con base de datos
-- Despliegue
 
 ## Cómo Ejecutar el Proyecto
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/sebastiangalindo01-bittengo/airline-reservation-system.git
+git clone https://github.com/sebastiangalindo01-bit/airline-reservation-system.git
 
 # Navegar al directorio
 cd airline-reservation-system
