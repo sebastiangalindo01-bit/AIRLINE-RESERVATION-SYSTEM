@@ -53,7 +53,6 @@ airline-reservation-system/
 #### Agente de Aerolínea
 - Gestión de reservas
 - Confirmación de pagos
-- Asignación de asientos
 - Atención de solicitudes
 
 #### Cliente
