@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listado de Vuelos | ARS</title>
+  <!-- ARS-11: Estilos con CSS se vinculará aquí -->
+  <!-- <link rel="stylesheet" href="../css/flight-list.css" /> -->
+</head>
+<body>
+
+  <!-- ===== ENCABEZADO DE PÁGINA ===== -->
+  <header class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">
+        <span class="icon" aria-hidden="true">✈</span>
+        Listado de Vuelos
+      </h1>
+      <p class="page-subtitle">Consulta los vuelos disponibles y elige tu opción de viaje</p>
+    </div>
+  </header>
+
+  <!-- ===== SECCIÓN PRINCIPAL ===== -->
+  <main class="main-content">
+
+    <!-- BARRA DE FILTROS -->
+    <section class="filters-section" aria-label="Filtros de búsqueda">
+      <form class="filters-form" id="filtersForm">
+        <div class="filter-group">
+          <label for="filterOrigin">Origen</label>
+          <input
+            type="text"
+            id="filterOrigin"
+            name="origin"
+            placeholder="Ciudad de origen"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="filter-group">
+          <label for="filterDestination">Destino</label>
+          <input
+            type="text"
+            id="filterDestination"
+            name="destination"
+            placeholder="Ciudad de destino"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="filter-group">
+          <label for="filterDate">Fecha</label>
+          <input
+            type="date"
+            id="filterDate"
+            name="date"
+          />
+        </div>
+
+        <div class="filter-group">
+          <label for="filterStatus">Estado</label>
+          <select id="filterStatus" name="status">
+            <option value="">Todos</option>
+            <option value="scheduled">Programado</option>
+            <option value="boarding">Abordando</option>
+            <option value="delayed">Demorado</option>
+            <option value="cancelled">Cancelado</option>
+            <option value="completed">Completado</option>
+          </select>
+        </div>
+
+        <div class="filter-actions">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+          <button type="reset" class="btn btn-secondary">Limpiar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- RESUMEN DE RESULTADOS -->
+    <div class="results-summary" role="status" aria-live="polite">
+      <span id="resultsCount">Mostrando <strong>0</strong> vuelos</span>
+    </div>
+
+    <!-- TABLA DE VUELOS -->
+    <section class="table-section" aria-label="Tabla de vuelos disponibles">
+      <div class="table-wrapper">
+        <table class="flights-table" id="flightsTable">
+          <caption class="table-caption">
+            Vuelos disponibles — actualizado en tiempo real
+          </caption>
+
+          <thead>
+            <tr>
+              <th scope="col" class="col-flight"   data-sort="flightNumber">N° Vuelo</th>
+              <th scope="col" class="col-airline"  data-sort="airline">Aerolínea</th>
+              <th scope="col" class="col-origin"   data-sort="origin">Origen</th>
+              <th scope="col" class="col-dest"     data-sort="destination">Destino</th>
+              <th scope="col" class="col-dep"      data-sort="departure">Salida</th>
+              <th scope="col" class="col-arr"      data-sort="arrival">Llegada</th>
+              <th scope="col" class="col-duration" data-sort="duration">Duración</th>
+              <th scope="col" class="col-seats"    data-sort="seats">Asientos</th>
+              <th scope="col" class="col-price"    data-sort="price">Precio</th>
+              <th scope="col" class="col-status"   data-sort="status">Estado</th>
+              <th scope="col" class="col-actions">Acción</th>
+            </tr>
+          </thead>
+
+          <tbody id="flightsTableBody">
+            <!--
+              Las filas se generarán dinámicamente con JavaScript.
+              ARS-12: Simulación de datos de vuelos
+              ARS-13: Mostrar estados del vuelo
+            -->
+            <tr class="empty-row" id="emptyRow">
+              <td colspan="11" class="empty-message">
+                <span class="empty-icon" aria-hidden="true">🔍</span>
+                <span>No se encontraron vuelos con los filtros seleccionados.</span>
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="11" class="table-footer">
+                <div class="pagination" id="pagination" aria-label="Paginación">
+                  <button class="page-btn" id="prevPage" aria-label="Página anterior" disabled>&#8592;</button>
+                  <span class="page-info" id="pageInfo">Página 1 de 1</span>
+                  <button class="page-btn" id="nextPage" aria-label="Página siguiente" disabled>&#8594;</button>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== MODAL: DETALLE DEL VUELO ===== -->
+  <dialog class="flight-modal" id="flightModal" aria-labelledby="modalTitle" aria-modal="true">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Detalle del Vuelo</h2>
+        <button class="modal-close" id="modalClose" aria-label="Cerrar modal">&times;</button>
+      </header>
+
+      <div class="modal-body" id="modalBody">
+        <!-- Contenido generado dinámicamente por JS -->
+      </div>
+
+      <footer class="modal-footer">
+        <button class="btn btn-primary" id="btnReserve">Reservar vuelo</button>
+        <button class="btn btn-secondary" id="btnCloseModal">Cerrar</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="page-footer">
+    <p>
+      Sistema de Gestión de Reservas &mdash; ARS &copy; 2026 &bull;
+      Programación en Ambiente Web I &bull; UCEVA
+    </p>
+  </footer>
+
+  <!-- ARS-12 y ARS-13: script de datos y estados se vinculará aquí -->
+  <!-- <script src="../js/flight-data.js"></script>  -->
+  <!-- <script src="../js/flight-list.js"></script>  -->
+
+</body>
+</html>
