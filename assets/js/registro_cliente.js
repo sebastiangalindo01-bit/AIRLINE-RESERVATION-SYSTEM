@@ -1,6 +1,53 @@
 const form = document.getElementById("forCliente");
 
 if (form) {
+    const countryRegions = {
+        Colombia: [
+            "Antioquia",
+            "Cundinamarca",
+            "Valle del Cauca",
+            "Santander",
+            "Bolivar",
+            "Atlantico",
+            "Risaralda",
+            "Nariño",
+            "Huila",
+            "Tolima"
+        ],
+        "Estados Unidos": [
+            "California",
+            "Texas",
+            "Florida",
+            "New York",
+            "Illinois",
+            "Washington"
+        ],
+        España: [
+            "Madrid",
+            "Cataluña",
+            "Andalucia",
+            "Valencia",
+            "Galicia",
+            "Pais Vasco"
+        ],
+        Brasil: [
+            "Sao Paulo",
+            "Rio de Janeiro",
+            "Minas Gerais",
+            "Bahia",
+            "Parana",
+            "Pernambuco"
+        ],
+        Francia: [
+            "Ile-de-France",
+            "Normandie",
+            "Occitanie",
+            "Bretagne",
+            "Nouvelle-Aquitaine",
+            "Grand Est"
+        ]
+    };
+
     const fields = {
         tipo_documento: document.getElementById("tipo_documento"),
         numero_identificacion: document.getElementById("numero_identificacion"),
@@ -15,6 +62,44 @@ if (form) {
         pais: document.getElementById("pais"),
         departamento_estado: document.getElementById("departamento_estado"),
         ciudad: document.getElementById("ciudad")
+    };
+
+    const departamentoLabel = form.querySelector('label[for="departamento_estado"]');
+
+    const getRegionPlaceholder = (country) => {
+        if (!country) return "Seleccione el departamento o estado de residencia";
+        return country === "Colombia"
+            ? "Seleccione el departamento de residencia"
+            : "Seleccione el estado o provincia de residencia";
+    };
+
+    const updateRegionLabel = (country) => {
+        if (!departamentoLabel) return;
+        departamentoLabel.textContent = country === "Colombia" ? "Departamento*" : "Estado/Provincia*";
+    };
+
+    const renderRegionsByCountry = (country) => {
+        const regionSelect = fields.departamento_estado;
+        const availableRegions = countryRegions[country] || [];
+        const hasCountry = Boolean(country);
+
+        regionSelect.innerHTML = "";
+
+        const placeholderOption = document.createElement("option");
+        placeholderOption.value = "";
+        placeholderOption.textContent = getRegionPlaceholder(country);
+        regionSelect.appendChild(placeholderOption);
+
+        availableRegions.forEach((regionName) => {
+            const option = document.createElement("option");
+            option.value = regionName;
+            option.textContent = regionName;
+            regionSelect.appendChild(option);
+        });
+
+        regionSelect.disabled = !hasCountry;
+        regionSelect.value = "";
+        updateRegionLabel(country);
     };
 
     const rules = {
@@ -91,7 +176,16 @@ if (form) {
             return value ? "" : "Selecciona un pais.";
         },
         departamento_estado(value) {
-            return value ? "" : "Selecciona un departamento o estado.";
+            const selectedCountry = fields.pais.value;
+            if (!selectedCountry) return "";
+            if (!value) return "Selecciona un departamento o estado.";
+
+            const allowedRegions = countryRegions[selectedCountry] || [];
+            if (allowedRegions.length > 0 && !allowedRegions.includes(value)) {
+                return "Selecciona una opcion valida para el pais elegido.";
+            }
+
+            return "";
         },
         ciudad(value) {
             if (!value) return "Ingresa la ciudad.";
@@ -120,6 +214,8 @@ if (form) {
 
     form.setAttribute("novalidate", "novalidate");
 
+    renderRegionsByCountry(fields.pais.value);
+
     Object.keys(fields).forEach((fieldName) => {
         const field = fields[fieldName];
         if (!field) return;
@@ -139,6 +235,12 @@ if (form) {
                 validateField("confirm_password");
             }
         });
+    });
+
+    fields.pais.addEventListener("change", () => {
+        renderRegionsByCountry(fields.pais.value);
+        validateField("pais");
+        validateField("departamento_estado");
     });
 
     form.addEventListener("submit", (event) => {
