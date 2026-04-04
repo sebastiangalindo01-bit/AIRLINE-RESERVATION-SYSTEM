@@ -1,0 +1,55 @@
+[
+  {
+    "tipoDocumento": "Cédula de Ciudadanía",
+    "numeroIdentificacion": "1002456789",
+    "nombres": "Juan Pablo",
+    "apellidos": "García López",
+    "correoElectronico": "juan.garcia@gmail.com",
+    "telefono": "3114567890",
+    "telefonoAlterno": "",
+    "direccionResidencia": "Calle 45 #12-34",
+    "pais": "Colombia",
+    "estadoProvincia": "Antioquia",
+    "ciudad": "Medellín"
+  },
+  {
+    "tipoDocumento": "Pasaporte",
+    "numeroIdentificacion": "A1234567",
+    "nombres": "María Fernanda",
+    "apellidos": "Ruiz Gómez",
+    "correoElectronico": "maria.ruiz@gmail.com",
+    "telefono": "3009876543",
+    "telefonoAlterno": "3151234567",
+    "direccionResidencia": "Carrera 10 #20-30",
+    "pais": "Colombia",
+    "estadoProvincia": "Cundinamarca",
+    "ciudad": "Bogotá"
+  },
+  {
+    "tipoDocumento": "Cédula de Ciudadanía",
+    "numeroIdentificacion": "1023456780",
+    "nombres": "Carlos Andrés",
+    "apellidos": "Mendoza Pérez",
+    "correoElectronico": "carlos.mendoza@gmail.com",
+    "telefono": "3206547891",
+    "telefonoAlterno": "",
+    "direccionResidencia": "Avenida Principal 123",
+    "pais": "España",
+    "estadoProvincia": "Madrid",
+    "ciudad": "Madrid"
+  },
+  {
+    "tipoDocumento": "Cédula de Ciudadanía",
+    "numeroIdentificacion": "1019876543",
+    "nombres": "Laura Sofía",
+    "apellidos": "Torres Díaz",
+    "correoElectronico": "laura.torres@gmail.com",
+    "telefono": "3027788990",
+    "telefonoAlterno": "3011122233",
+    "direccionResidencia": "Rua Augusta 456",
+    "pais": "Brasil",
+    "estadoProvincia": "Sao Paulo",
+    "ciudad": "São Paulo"
+  }
+]
+
