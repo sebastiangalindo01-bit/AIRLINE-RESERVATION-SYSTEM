@@ -992,6 +992,52 @@
     min-width: 150px;
 }
 
+/* ========== FORMULARIO DE RESERVA (SUBTAREA 2) ========== */
+.reserva-form-wrapper {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.12);
+    padding: 2rem;
+}
+
+.reserva-step-header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ecf0f1;
+    padding-bottom: 1rem;
+}
+
+.reserva-step-header h2 {
+    margin: 0 0 0.35rem 0;
+    color: #1f2a44;
+    font-size: 1.6rem;
+}
+
+.reserva-step-header p {
+    margin: 0;
+    color: #7b8596;
+}
+
+.reserva-form {
+    width: 100%;
+}
+
+.reserva-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 1.25rem;
+}
+
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+.reserva-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
     /* Buscar vuelos */
@@ -1036,6 +1082,18 @@
     }
 
     .btn-seleccionar-vuelo {
+        width: 100%;
+    }
+
+    .reserva-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reserva-actions {
+        justify-content: stretch;
+    }
+
+    .reserva-actions .btn {
         width: 100%;
     }
 
@@ -1165,5 +1223,9 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+
+    .reserva-form-wrapper {
+        padding: 1.25rem;
     }
 }
