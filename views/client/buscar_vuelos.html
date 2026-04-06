@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Vuelos - Airline Reservation System</title>
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/layout.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="../../assets/css/pages/cliente.css">
+</head>
+<body>
+    <!-- Header Principal -->
+    <header class="navbar-principal">
+        <div class="navbar-container">
+            <div class="logo-section">
+                <div class="logo">✈️</div>
+                <div class="logo-text">
+                    <h1>Airline Reservation System</h1>
+                    <p>Tu viaje comienza aquí</p>
+                </div>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn-login">Iniciar Sesión</button>
+                <button class="btn-register">Registrarse</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación -->
+    <nav class="navbar-tabs">
+        <div class="nav-container">
+            <a href="#buscar" class="nav-tab active">
+                <span class="icon">🔍</span> Buscar Vuelos
+            </a>
+            <a href="#vuelos" class="nav-tab">
+                <span class="icon">✈️</span> Vuelos
+            </a>
+            <a href="#reservas" class="nav-tab">
+                <span class="icon">📋</span> Mis Reservas
+            </a>
+            <a href="#paquetes" class="nav-tab">
+                <span class="icon">🎒</span> Paquetes
+            </a>
+            <a href="#perfil" class="nav-tab">
+                <span class="icon">👤</span> Perfil
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content-buscar">
+        <!-- Sección de Búsqueda -->
+        <section class="seccion-busqueda-principal">
+            <div class="busqueda-header">
+                <div class="busqueda-titulo">
+                    <h2>
+                        <span class="icon-titulo">✈️</span>
+                        Encuentra tu vuelo ideal
+                    </h2>
+                    <p>Busca entre cientos de destinos nacionales e internacionales</p>
+                </div>
+            </div>
+
+            <div class="formulario-busqueda-completo">
+                <!-- Tipo de Viaje -->
+                <div class="seccion-tipo-viaje">
+                    <label class="label-tipo">
+                        <span class="icono">⇄</span>
+                        Tipo de Viaje
+                    </label>
+                    <div class="opciones-viaje">
+                        <label class="radio-option">
+                            <input type="radio" name="tipoViaje" value="ida" checked>
+                            <span>Solo Ida</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="tipoViaje" value="ida-vuelta">
+                            <span>Ida y Vuelta</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Campos de búsqueda -->
+                <div class="campos-busqueda">
+                    <!-- Origen -->
+                    <div class="campo-input">
+                        <label for="origen">
+                            <span class="icono-campo">📍</span>
+                            Origen
+                        </label>
+                        <select id="origen" class="select-campo">
+                            <option value="">Selecciona ciudad</option>
+                            <option value="Bogotá">Bogotá</option>
+                            <option value="Medellín">Medellín</option>
+                            <option value="Cali">Cali</option>
+                        </select>
+                    </div>
+
+                    <!-- Destino -->
+                    <div class="campo-input">
+                        <label for="destino">
+                            <span class="icono-campo">📍</span>
+                            Destino
+                        </label>
+                        <select id="destino" class="select-campo">
+                            <option value="">Selecciona ciudad</option>
+                            <option value="Cartagena">Cartagena</option>
+                            <option value="Santa Marta">Santa Marta</option>
+                            <option value="Medellín">Medellín</option>
+                        </select>
+                    </div>
+
+                    <!-- Fecha de Salida -->
+                    <div class="campo-input">
+                        <label for="fechaSalida">
+                            <span class="icono-campo">📅</span>
+                            Fecha de salida
+                        </label>
+                        <input type="date" id="fechaSalida" class="input-campo">
+                    </div>
+
+                    <!-- Pasajeros -->
+                    <div class="campo-input">
+                        <label for="pasajeros">
+                            <span class="icono-campo">👥</span>
+                            Pasajeros
+                        </label>
+                        <select id="pasajeros" class="select-campo">
+                            <option value="1">1 Pasajero</option>
+                            <option value="2">2 Pasajeros</option>
+                            <option value="3">3 Pasajeros</option>
+                            <option value="4">4 Pasajeros</option>
+                            <option value="5">5 Pasajeros</option>
+                            <option value="6">6 Pasajeros</option>
+                        </select>
+                    </div>
+
+                    <!-- Botón Buscar -->
+                    <button id="btnBuscar" class="btn-buscar-principal">
+                        🔍 Buscar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lista de vuelos -->
+        <section class="seccion-resultados">
+            <div class="encabezado-resultados">
+                <h2>Vuelos Disponibles</h2>
+                <span class="contador-vuelos" id="contadorVuelos">0 vuelos encontrados</span>
+            </div>
+
+            <div class="lista-vuelos" id="listaVuelos">
+                <!-- Los vuelos se cargarán aquí dinamicamente -->
+                <div class="mensaje-vacio">
+                    <p>Ingresa tus criterios de búsqueda para ver los vuelos disponibles</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Airline Reservation System. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../../assets/js/vuelos.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "P001",
+    "nombre": "Alojamiento Hotel 5 Estrellas",
+    "descripcion": "3 noches en hotel de lujo con desayuno incluido",
+    "destinos": ["Cartagena", "Santa Marta", "Santa Marta"],
+    "precio": 600000,
+    "tipo": "alojamiento",
+    "estado": "Disponible"
+  },
+  {
+    "id": "P002",
+    "nombre": "Tour Histórico",
+    "descripcion": "Tour de 4 horas por los sitios históricos con guía profesional",
+    "destinos": ["Cartagena"],
+    "precio": 150000,
+    "tipo": "tour",
+    "estado": "Disponible"
+  },
+  {
+    "id": "P003",
+    "nombre": "Transporte Terrestre",
+    "descripcion": "Transporte hotel-aeropuerto ida y vuelta",
+    "destinos": ["Cartagena", "Santa Marta", "Medellín"],
+    "precio": 80000,
+    "tipo": "transporte",
+    "estado": "Disponible"
+  },
+  {
+    "id": "P004",
+    "nombre": "Paquete Completo Cartagena",
+    "descripcion": "Alojamiento + Tour + Transporte",
+    "destinos": ["Cartagena"],
+    "precio": 800000,
+    "tipo": "combinado",
+    "estado": "Disponible"
+  }
+]
