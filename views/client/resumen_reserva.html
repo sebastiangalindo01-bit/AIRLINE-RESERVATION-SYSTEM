@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Resumen de Reserva - Airline Reservation System</title>
+	<link rel="stylesheet" href="../../assets/css/base.css">
+	<link rel="stylesheet" href="../../assets/css/layout.css">
+	<link rel="stylesheet" href="../../assets/css/components.css">
+	<link rel="stylesheet" href="../../assets/css/pages/cliente.css">
+</head>
+<body>
+	<header class="navbar-principal">
+		<div class="navbar-container">
+			<div class="logo-section">
+				<div class="logo">✈️</div>
+				<div class="logo-text">
+					<h1>Airline Reservation System</h1>
+					<p>Tu viaje comienza aqui</p>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main class="main-content-buscar">
+		<section class="reserva-container reserva-form-wrapper">
+			<div class="reserva-step-header">
+				<h2>Resumen de Reserva</h2>
+				<p>Verifica los datos antes de continuar al pago.</p>
+			</div>
+
+			<div class="desglose-costo" id="estadoResumen" hidden></div>
+
+			<div id="resumenContenido" hidden>
+				<div class="reserva-form-grid">
+					<div class="form-group form-group-full">
+						<label>Vuelo seleccionado</label>
+						<div class="desglose-costo">
+							<div class="linea-costo">
+								<span class="concepto">Ruta</span>
+								<span class="valor" id="resumenRuta">-</span>
+							</div>
+							<div class="linea-costo">
+								<span class="concepto">Codigo</span>
+								<span class="valor" id="resumenCodigo">-</span>
+							</div>
+							<div class="linea-costo">
+								<span class="concepto">Fecha y hora de salida</span>
+								<span class="valor" id="resumenFechaSalida">-</span>
+							</div>
+							<div class="linea-costo">
+								<span class="concepto">Fecha y hora de llegada</span>
+								<span class="valor" id="resumenFechaLlegada">-</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group form-group-full">
+						<label>Datos del pasajero</label>
+						<div class="desglose-costo">
+							<div class="linea-costo">
+								<span class="concepto">Pasajero</span>
+								<span class="valor" id="resumenPasajero">-</span>
+							</div>
+							<div class="linea-costo">
+								<span class="concepto">Documento</span>
+								<span class="valor" id="resumenDocumento">-</span>
+							</div>
+							<div class="linea-costo">
+								<span class="concepto">Correo</span>
+								<span class="valor" id="resumenCorreo">-</span>
+							</div>
+							<div class="linea-costo">
+								<span class="concepto">Telefono</span>
+								<span class="valor" id="resumenTelefono">-</span>
+							</div>
+							<div class="linea-costo">
+								<span class="concepto">Ubicacion</span>
+								<span class="valor" id="resumenUbicacion">-</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group form-group-full">
+						<label>Total de la reserva</label>
+						<div class="desglose-costo">
+							<div class="linea-costo linea-subtotal">
+								<span class="concepto">Tarifa base</span>
+								<span class="valor" id="resumenSubtotal">$0</span>
+							</div>
+							<div class="linea-costo linea-impuesto">
+								<span class="concepto">Impuestos y tasas (19%)</span>
+								<span class="valor" id="resumenImpuestos">$0</span>
+							</div>
+							<div class="linea-costo linea-total">
+								<span class="concepto">Total a pagar</span>
+								<span class="valor" id="resumenTotal">$0</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="reserva-actions">
+					<button id="btnVolverCrearReserva" type="button" class="btn btn-secondary">Volver</button>
+					<button id="btnContinuarPago" type="button" class="btn btn-primary">Continuar al pago</button>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<p>&copy; 2026 Airline Reservation System. Todos los derechos reservados.</p>
+	</footer>
+
+	<script src="../../assets/js/resumen_reserva.js" defer></script>
+</body>
+</html>
