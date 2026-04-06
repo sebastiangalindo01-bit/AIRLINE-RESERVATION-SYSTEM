@@ -29,7 +29,7 @@
 				<p>Completa la información para continuar con tu reserva.</p>
 			</div>
 
-			<form class="reserva-form" action="#" method="post">
+			<form id="formCrearReserva" class="reserva-form" action="#" method="post" novalidate>
 				<div class="reserva-form-grid">
 					<div class="form-group">
 						<label for="tipoDocumento">Tipo de documento</label>
@@ -112,8 +112,8 @@
 				</div>
 
 				<div class="reserva-actions">
-					<button type="button" class="btn btn-secondary">Volver</button>
-					<button type="submit" class="btn btn-primary">Continuar</button>
+					<button id="btnVolverReserva" type="button" class="btn btn-secondary">Volver</button>
+					<button id="btnContinuarReserva" type="submit" class="btn btn-primary">Continuar</button>
 				</div>
 			</form>
 		</section>
@@ -122,5 +122,7 @@
 	<footer class="footer">
 		<p>&copy; 2026 Airline Reservation System. Todos los derechos reservados.</p>
 	</footer>
+
+	<script src="../../assets/js/crear_reserva.js" defer></script>
 </body>
 </html>
