@@ -1,0 +1,92 @@
+<!-- =====================================================
+     NAVBAR.HTML — Navbar principal (componente parcial)
+     ARS-33: Crear navbar principal
+     Historia: ARS-32 Layout general del sistema
+     
+     USO: Copiar el contenido del <header> en cada vista
+     que necesite el navbar.
+     ===================================================== -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navbar | ARS</title>
+  <link rel="stylesheet" href="../../assets/css/base.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+</head>
+<body>
+
+<!-- ===== NAVBAR PRINCIPAL ===== -->
+<header class="navbar" id="navbar">
+
+  <!-- BARRA SUPERIOR: Logo + Acciones de sesión -->
+  <div class="navbar-top">
+    <div class="navbar-brand">
+      <div class="navbar-logo" aria-hidden="true">✈</div>
+      <div class="navbar-brand-text">
+        <span class="navbar-title">Airline Reservation System</span>
+        <span class="navbar-subtitle">Tu viaje comienza aquí</span>
+      </div>
+    </div>
+
+    <div class="navbar-auth">
+      <a href="../auth/login.html" class="btn btn-outline">
+        <span aria-hidden="true">→</span> Iniciar Sesión
+      </a>
+      <a href="../auth/registro_cliente.html" class="btn btn-primary">
+        <span aria-hidden="true">👤</span> Registrarse
+      </a>
+    </div>
+
+    <!-- Botón hamburguesa para móvil -->
+    <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navbarMenu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
+
+  <!-- BARRA SECUNDARIA: Navegación principal -->
+  <nav class="navbar-nav" id="navbarMenu" role="navigation" aria-label="Navegación principal">
+    <ul class="navbar-links">
+      <li>
+        <a href="#buscar" class="nav-link nav-link--active">
+          <span class="nav-icon" aria-hidden="true">🔍</span>
+          Buscar Vuelos
+        </a>
+      </li>
+      <li>
+        <a href="listado_vuelos.html" class="nav-link">
+          <span class="nav-icon" aria-hidden="true">✈</span>
+          Vuelos
+        </a>
+      </li>
+      <li>
+        <a href="resumen_reserva.html" class="nav-link">
+          <span class="nav-icon" aria-hidden="true">📋</span>
+          Mis Reservas
+        </a>
+      </li>
+      <li>
+        <a href="paquetes_turisticos.html" class="nav-link">
+          <span class="nav-icon" aria-hidden="true">🎁</span>
+          Paquetes
+        </a>
+      </li>
+      <li>
+        <a href="#perfil" class="nav-link">
+          <span class="nav-icon" aria-hidden="true">👤</span>
+          Perfil
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</header>
+<!-- ===== FIN NAVBAR ===== -->
+
+<script src="../../assets/js/navbar.js"></script>
+</body>
+</html>
