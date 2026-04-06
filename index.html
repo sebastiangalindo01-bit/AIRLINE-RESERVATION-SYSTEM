@@ -1,1 +1,321 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Airline Reservation System | Inicio</title>
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-top">
+      <div class="navbar-brand">
+        <div class="navbar-logo" aria-hidden="true">
+          <i class="bi bi-airplane-fill" style="color:white; font-size:1.4rem;"></i>
+        </div>
+        <div class="navbar-brand-text">
+          <span class="navbar-title">Airline Reservation System</span>
+          <span class="navbar-subtitle">Tu viaje comienza aquí</span>
+        </div>
+      </div>
+
+      <div class="navbar-auth">
+        <a href="views/auth/login.html" class="btn btn-outline">
+          <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+        </a>
+        <a href="views/auth/registro_cliente.html" class="btn btn-primary">
+          <i class="bi bi-person-plus"></i> Registrarse
+        </a>
+      </div>
+
+      <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navbarMenu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <nav class="navbar-nav" id="navbarMenu" role="navigation" aria-label="Navegación principal">
+      <ul class="navbar-links">
+        <li>
+          <a href="#buscar" class="nav-link nav-link--active">
+            <i class="bi bi-search nav-icon"></i> Buscar Vuelos
+          </a>
+        </li>
+        <li>
+          <a href="views/client/listado_vuelos.html" class="nav-link">
+            <i class="bi bi-airplane nav-icon"></i> Vuelos
+          </a>
+        </li>
+        <li>
+          <a href="views/client/resumen_reserva.html" class="nav-link">
+            <i class="bi bi-journal-text nav-icon"></i> Mis Reservas
+          </a>
+        </li>
+        <li>
+          <a href="views/client/paquetes_turisticos.html" class="nav-link">
+            <i class="bi bi-gift nav-icon"></i> Paquetes
+          </a>
+        </li>
+        <li>
+          <a href="#perfil" class="nav-link">
+            <i class="bi bi-person nav-icon"></i> Perfil
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+
+    <!-- SECCIÓN 1: HERO BUSCADOR -->
+    <section class="hero-section" id="buscar" aria-label="Buscador de vuelos">
+      <div class="hero-banner">
+        <div class="hero-banner-text">
+          <i class="bi bi-airplane-fill"></i>
+          <div>
+            <h2 class="hero-banner-title">Encuentra tu vuelo ideal</h2>
+            <p class="hero-banner-subtitle">Busca entre cientos de destinos nacionales e internacionales</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-form-wrapper">
+        <form class="hero-form" id="searchForm">
+          <!-- Tipo de viaje -->
+          <div class="trip-type">
+            <span class="trip-type-label">
+              <i class="bi bi-arrow-left-right"></i> Tipo de Viaje
+            </span>
+            <div class="trip-type-options">
+              <label class="radio-option">
+                <input type="radio" name="tripType" value="one-way" checked /> Solo Ida
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="tripType" value="round-trip" /> Ida y Vuelta
+              </label>
+            </div>
+          </div>
+
+          <!-- Campos de búsqueda -->
+          <div class="search-fields">
+            <div class="search-field">
+              <label for="searchOrigin">
+                <i class="bi bi-geo-alt"></i> Origen
+              </label>
+              <select id="searchOrigin" name="origin">
+                <option value="">Selecciona ciudad</option>
+                <option value="BOG">Bogotá</option>
+                <option value="MDE">Medellín</option>
+                <option value="CLO">Cali</option>
+                <option value="BAQ">Barranquilla</option>
+                <option value="CTG">Cartagena</option>
+                <option value="BGA">Bucaramanga</option>
+              </select>
+            </div>
+
+            <div class="search-field">
+              <label for="searchDestination">
+                <i class="bi bi-geo-alt-fill"></i> Destino
+              </label>
+              <select id="searchDestination" name="destination">
+                <option value="">Selecciona ciudad</option>
+                <option value="CTG">Cartagena</option>
+                <option value="ADZ">San Andrés</option>
+                <option value="MIA">Miami</option>
+                <option value="BOG">Bogotá</option>
+                <option value="BAQ">Barranquilla</option>
+                <option value="MEX">México DF</option>
+              </select>
+            </div>
+
+            <div class="search-field">
+              <label for="searchDate">
+                <i class="bi bi-calendar3"></i> Fecha de salida
+              </label>
+              <div class="date-input-wrapper">
+                <i class="bi bi-calendar3"></i>
+                <input type="date" id="searchDate" name="date" />
+              </div>
+            </div>
+
+            <div class="search-field">
+              <label for="searchPassengers">
+                <i class="bi bi-people"></i> Pasajeros
+              </label>
+              <select id="searchPassengers" name="passengers">
+                <option value="1">1 Pasajero</option>
+                <option value="2">2 Pasajeros</option>
+                <option value="3">3 Pasajeros</option>
+                <option value="4">4 Pasajeros</option>
+                <option value="5">5+ Pasajeros</option>
+              </select>
+            </div>
+
+            <div class="search-action">
+              <button type="submit" class="btn btn-primary btn-search">
+                <i class="bi bi-search"></i> Buscar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: PAQUETES TURÍSTICOS DESTACADOS -->
+    <section class="packages-section" id="paquetes" aria-label="Paquetes turísticos destacados">
+      <div class="section-container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Paquetes Turísticos Destacados</h2>
+            <p class="section-subtitle">Complementa tu viaje con experiencias únicas</p>
+          </div>
+          <a href="views/client/paquetes_turisticos.html" class="btn btn-outline">Ver Todos</a>
+        </div>
+
+        <div class="packages-grid" id="packagesGrid">
+          <!-- Tarjetas generadas por JS -->
+          <article class="package-card">
+            <div class="package-img-wrapper">
+              <img src="assets/images/cartagena.jpg" alt="Cartagena" class="package-img" onerror="this.style.background='#E2E8F0'; this.style.minHeight='180px';" />
+            </div>
+            <div class="package-body">
+              <h3 class="package-name">Cartagena Todo Incluido</h3>
+              <p class="package-location"><i class="bi bi-geo-alt"></i> Cartagena</p>
+              <div class="package-footer">
+                <div>
+                  <span class="package-from">Desde</span>
+                  <span class="package-price">$450,000</span>
+                </div>
+                <a href="views/client/paquetes_turisticos.html" class="btn btn-primary btn-sm">Ver más</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="package-card">
+            <div class="package-img-wrapper">
+              <img src="assets/images/miami-beach.jpg" alt="Miami Beach" class="package-img" onerror="this.style.background='#E2E8F0'; this.style.minHeight='180px';" />
+            </div>
+            <div class="package-body">
+              <h3 class="package-name">Hotel Miami Beach</h3>
+              <p class="package-location"><i class="bi bi-geo-alt"></i> Miami</p>
+              <div class="package-footer">
+                <div>
+                  <span class="package-from">Desde</span>
+                  <span class="package-price">$800,000</span>
+                </div>
+                <a href="views/client/paquetes_turisticos.html" class="btn btn-primary btn-sm">Ver más</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="package-card">
+            <div class="package-img-wrapper">
+              <img src="assets/images/city-tour.jpg" alt="City Tour Miami" class="package-img" onerror="this.style.background='#E2E8F0'; this.style.minHeight='180px';" />
+            </div>
+            <div class="package-body">
+              <h3 class="package-name">City Tour Miami</h3>
+              <p class="package-location"><i class="bi bi-geo-alt"></i> Miami</p>
+              <div class="package-footer">
+                <div>
+                  <span class="package-from">Desde</span>
+                  <span class="package-price">$200,000</span>
+                </div>
+                <a href="views/client/paquetes_turisticos.html" class="btn btn-primary btn-sm">Ver más</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="package-card">
+            <div class="package-img-wrapper">
+              <img src="assets/images/san-andres.jpg" alt="San Andrés" class="package-img" onerror="this.style.background='#E2E8F0'; this.style.minHeight='180px';" />
+            </div>
+            <div class="package-body">
+              <h3 class="package-name">Todo Incluido San Andrés</h3>
+              <p class="package-location"><i class="bi bi-geo-alt"></i> San Andrés</p>
+              <div class="package-footer">
+                <div>
+                  <span class="package-from">Desde</span>
+                  <span class="package-price">$1,200,000</span>
+                </div>
+                <a href="views/client/paquetes_turisticos.html" class="btn btn-primary btn-sm">Ver más</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: VUELOS DISPONIBLES -->
+    <section class="flights-section" id="vuelos" aria-label="Vuelos disponibles">
+      <div class="section-container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Vuelos Disponibles</h2>
+            <p class="section-subtitle">Descubre nuestros mejores destinos</p>
+          </div>
+          <a href="views/client/listado_vuelos.html" class="btn btn-outline">Ver Todos</a>
+        </div>
+
+        <div class="flights-preview" id="flightsPreview">
+          <!-- Vuelos generados por JS desde flight-data.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" aria-label="Pie de página">
+    <div class="footer-container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <h3 class="footer-brand-name">Airline Reservation System</h3>
+          <p class="footer-brand-desc">Tu aerolínea de confianza para volar por Colombia y el mundo.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Destinos</a></li>
+            <li><a href="#">Promociones</a></li>
+            <li><a href="#">Programa de Lealtad</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Ayuda</h4>
+          <ul class="footer-links">
+            <li><a href="#">Centro de Ayuda</a></li>
+            <li><a href="#">Políticas de Equipaje</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contacto</h4>
+          <ul class="footer-links footer-contact">
+            <li><i class="bi bi-telephone"></i> +57 1 2342 5678</li>
+            <li><i class="bi bi-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8de4e3ebe2cdece4ffe1e4e3e8a3eee2e0">[email&#160;protected]</a></li>
+            <li><i class="bi bi-geo-alt"></i> Bogotá, Colombia</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Airline Reservation System. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cd
