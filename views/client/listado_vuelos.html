@@ -57,17 +57,7 @@
           />
         </div>
 
-        <div class="filter-group">
-          <label for="filterStatus">Estado</label>
-          <select id="filterStatus" name="status">
-            <option value="">Todos</option>
-            <option value="scheduled">Programado</option>
-            <option value="boarding">Abordando</option>
-            <option value="delayed">Demorado</option>
-            <option value="cancelled">Cancelado</option>
-            <option value="completed">Completado</option>
-          </select>
-        </div>
+        <input type="hidden" id="filterStatus" name="status" value="" />
 
         <div class="filter-actions">
           <button type="submit" class="btn btn-primary">Buscar</button>
