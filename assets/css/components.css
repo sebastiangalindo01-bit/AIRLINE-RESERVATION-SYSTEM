@@ -241,3 +241,12 @@
     font-size: 1.2rem;
   }
 }
+
+/* Fix: texto siempre visible en btn-primary */
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  color: #ffffff !important;
+  text-decoration: none;
+}

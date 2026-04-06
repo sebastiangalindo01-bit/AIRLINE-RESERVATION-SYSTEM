@@ -147,6 +147,8 @@ const statusLabels = {
   completed: "Completado"
 };
 
+let visibleFlights = [...flightsData];
+
 // ----- FORMATO DE MONEDA -----
 function formatCurrency(value) {
   return new Intl.NumberFormat('es-CO', {
@@ -154,6 +156,14 @@ function formatCurrency(value) {
     currency: 'COP',
     maximumFractionDigits: 0
   }).format(value);
+}
+
+function normalizeText(value) {
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
 }
 
 // ----- RENDERIZAR FILAS EN LA TABLA -----
@@ -259,37 +269,53 @@ function openFlightModal(flightId) {
 }
 
 // ----- FILTRAR VUELOS -----
-function filterFlights() {
-  const origin      = document.getElementById('filterOrigin').value.trim().toLowerCase();
-  const destination = document.getElementById('filterDestination').value.trim().toLowerCase();
+function getFilteredFlights() {
+  const origin      = normalizeText(document.getElementById('filterOrigin').value);
+  const destination = normalizeText(document.getElementById('filterDestination').value);
   const date        = document.getElementById('filterDate').value;
-  const status      = document.getElementById('filterStatus').value;
 
-  const filtered = flightsData.filter(flight => {
-    const matchOrigin      = !origin      || flight.origin.toLowerCase().includes(origin);
-    const matchDestination = !destination || flight.destination.toLowerCase().includes(destination);
+  return flightsData.filter(flight => {
+    const flightOrigin = normalizeText(flight.origin);
+    const flightDestination = normalizeText(flight.destination);
+
+    const matchOrigin      = !origin      || flightOrigin.includes(origin);
+    const matchDestination = !destination || flightDestination.includes(destination);
     const matchDate        = !date        || flight.date === date;
-    const matchStatus      = !status      || flight.status === status;
-    return matchOrigin && matchDestination && matchDate && matchStatus;
+    return matchOrigin && matchDestination && matchDate;
   });
+}
 
-  renderFlights(filtered);
+function filterFlights() {
+  visibleFlights = getFilteredFlights();
+  renderFlights(visibleFlights);
 }
 
 // ----- INICIALIZACIÓN -----
 document.addEventListener('DOMContentLoaded', () => {
   // Mostrar todos los vuelos al cargar
-  renderFlights(flightsData);
+  renderFlights(visibleFlights);
 
   // Filtros
   const form = document.getElementById('filtersForm');
+  const filterOrigin = document.getElementById('filterOrigin');
+  const filterDestination = document.getElementById('filterDestination');
+  const filterDate = document.getElementById('filterDate');
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     filterFlights();
   });
 
+  // Integración directa con la tabla: actualizar mientras el usuario filtra.
+  filterOrigin.addEventListener('input', filterFlights);
+  filterDestination.addEventListener('input', filterFlights);
+  filterDate.addEventListener('change', filterFlights);
+
   form.addEventListener('reset', () => {
-    setTimeout(() => renderFlights(flightsData), 0);
+    setTimeout(() => {
+      visibleFlights = [...flightsData];
+      renderFlights(visibleFlights);
+    }, 0);
   });
 
   // Modal: cerrar

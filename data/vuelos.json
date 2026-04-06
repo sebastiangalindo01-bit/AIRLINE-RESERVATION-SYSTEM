@@ -1,0 +1,44 @@
+[
+  {
+    "id": "V001",
+    "codigoVuelo": "AA100",
+    "ciudadOrigen": "Bogotá",
+    "ciudadDestino": "Cartagena",
+    "fechaSalida": "2026-04-10",
+    "horaSalida": "08:00",
+    "fechaLlegada": "2026-04-10",
+    "horaLlegada": "10:30",
+    "capacidad": 150,
+    "precioBase": 250000,
+    "estado": "Programado",
+    "imagen": "https://via.placeholder.com/300x200?text=AV+Bogota-Cartagena"
+  },
+  {
+    "id": "V002",
+    "codigoVuelo": "AA101",
+    "ciudadOrigen": "Bogotá",
+    "ciudadDestino": "Medellín",
+    "fechaSalida": "2026-04-10",
+    "horaSalida": "14:30",
+    "fechaLlegada": "2026-04-10",
+    "horaLlegada": "16:15",
+    "capacidad": 180,
+    "precioBase": 180000,
+    "estado": "Programado",
+    "imagen": "https://via.placeholder.com/300x200?text=AV+Bogota-Medellin"
+  },
+  {
+    "id": "V003",
+    "codigoVuelo": "AA102",
+    "ciudadOrigen": "Bogotá",
+    "ciudadDestino": "Santa Marta",
+    "fechaSalida": "2026-04-11",
+    "horaSalida": "09:00",
+    "fechaLlegada": "2026-04-11",
+    "horaLlegada": "11:00",
+    "capacidad": 120,
+    "precioBase": 220000,
+    "estado": "Programado",
+    "imagen": "https://via.placeholder.com/300x200?text=AV+Bogota-Santa+Marta"
+  }
+]
