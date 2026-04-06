@@ -156,6 +156,14 @@ function formatCurrency(value) {
   }).format(value);
 }
 
+function normalizeText(value) {
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
 // ----- RENDERIZAR FILAS EN LA TABLA -----
 function renderFlights(flights) {
   const tbody = document.getElementById('flightsTableBody');
@@ -260,17 +268,18 @@ function openFlightModal(flightId) {
 
 // ----- FILTRAR VUELOS -----
 function filterFlights() {
-  const origin      = document.getElementById('filterOrigin').value.trim().toLowerCase();
-  const destination = document.getElementById('filterDestination').value.trim().toLowerCase();
+  const origin      = normalizeText(document.getElementById('filterOrigin').value);
+  const destination = normalizeText(document.getElementById('filterDestination').value);
   const date        = document.getElementById('filterDate').value;
-  const status      = document.getElementById('filterStatus').value;
 
   const filtered = flightsData.filter(flight => {
-    const matchOrigin      = !origin      || flight.origin.toLowerCase().includes(origin);
-    const matchDestination = !destination || flight.destination.toLowerCase().includes(destination);
+    const flightOrigin = normalizeText(flight.origin);
+    const flightDestination = normalizeText(flight.destination);
+
+    const matchOrigin      = !origin      || flightOrigin.includes(origin);
+    const matchDestination = !destination || flightDestination.includes(destination);
     const matchDate        = !date        || flight.date === date;
-    const matchStatus      = !status      || flight.status === status;
-    return matchOrigin && matchDestination && matchDate && matchStatus;
+    return matchOrigin && matchDestination && matchDate;
   });
 
   renderFlights(filtered);
