@@ -147,6 +147,8 @@ const statusLabels = {
   completed: "Completado"
 };
 
+let visibleFlights = [...flightsData];
+
 // ----- FORMATO DE MONEDA -----
 function formatCurrency(value) {
   return new Intl.NumberFormat('es-CO', {
@@ -267,12 +269,12 @@ function openFlightModal(flightId) {
 }
 
 // ----- FILTRAR VUELOS -----
-function filterFlights() {
+function getFilteredFlights() {
   const origin      = normalizeText(document.getElementById('filterOrigin').value);
   const destination = normalizeText(document.getElementById('filterDestination').value);
   const date        = document.getElementById('filterDate').value;
 
-  const filtered = flightsData.filter(flight => {
+  return flightsData.filter(flight => {
     const flightOrigin = normalizeText(flight.origin);
     const flightDestination = normalizeText(flight.destination);
 
@@ -281,24 +283,39 @@ function filterFlights() {
     const matchDate        = !date        || flight.date === date;
     return matchOrigin && matchDestination && matchDate;
   });
+}
 
-  renderFlights(filtered);
+function filterFlights() {
+  visibleFlights = getFilteredFlights();
+  renderFlights(visibleFlights);
 }
 
 // ----- INICIALIZACIÓN -----
 document.addEventListener('DOMContentLoaded', () => {
   // Mostrar todos los vuelos al cargar
-  renderFlights(flightsData);
+  renderFlights(visibleFlights);
 
   // Filtros
   const form = document.getElementById('filtersForm');
+  const filterOrigin = document.getElementById('filterOrigin');
+  const filterDestination = document.getElementById('filterDestination');
+  const filterDate = document.getElementById('filterDate');
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     filterFlights();
   });
 
+  // Integración directa con la tabla: actualizar mientras el usuario filtra.
+  filterOrigin.addEventListener('input', filterFlights);
+  filterDestination.addEventListener('input', filterFlights);
+  filterDate.addEventListener('change', filterFlights);
+
   form.addEventListener('reset', () => {
-    setTimeout(() => renderFlights(flightsData), 0);
+    setTimeout(() => {
+      visibleFlights = [...flightsData];
+      renderFlights(visibleFlights);
+    }, 0);
   });
 
   // Modal: cerrar
