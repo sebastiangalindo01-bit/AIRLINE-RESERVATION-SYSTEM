@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8"> <!--Hace que los caracteres especiales se muestren correctamente en la página -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Hace que la página sea responsive, es decir, que se adapte a diferentes tamaños de pantalla -->
+        <meta name="description" content="Inicio de sesión para la aplicación de gestión de vuelos y paquetes turísticos.">
+        <title>Iniciar Sesión</title>
+        <link rel="stylesheet" href="../../assets/css/pages/auth.css">
+    </head>
+    <body>
+        <header class="auth-header">
+            <a href="../../index.html" class="brand">Airline Reservation System</a>
+            <nav aria-label="Navegación de acceso">
+                <a href="../../index.html">Volver al inicio</a>
+            </nav>
+        </header>
+
+        <main>
+            <form id="forLogin">
+                <h1>🔐 Iniciar Sesión</h1>
+                <p>Ingresa tus credenciales para acceder a tu cuenta</p>
+
+                <label for="email">Correo Electrónico</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="password">Contraseña</label><br>
+                <input type="password" id="password" name="password" required>
+
+                <p>Recordar sesión</p>
+                <p>¿Olvidaste tu contraseña?</p>
+
+                <button type="submit">Iniciar Sesión</button>
+
+                <p>¿No tienes cuenta? <a href="registro_cliente.html">Regístrate aquí</a></p>
+
+
+            </form>
+        </main>
+        <footer>
+            <p><strong>Airline Reservation System</strong></p>
+            <p>Tu aerolínea de confianza para volar por Colombia y el mundo.</p>
+            <p>
+                <a href="#">Centro de ayuda</a> |
+                <a href="#">Políticas de viaje</a> |
+                <a href="#">Términos y condiciones</a>
+            </p>
+            <p>&copy; 2026 Airline Reservation System. Todos los derechos reservados.</p>
+        </footer>
+    </body>
+</html>
