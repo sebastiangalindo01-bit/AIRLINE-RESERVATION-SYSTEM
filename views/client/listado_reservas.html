@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Reservas - Airline Reservation System</title>
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/layout.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="../../assets/css/pages/cliente.css">
+</head>
+<body>
+    <header class="navbar-principal">
+        <div class="navbar-container">
+            <div class="logo-section">
+                <div class="logo">✈️</div>
+                <div class="logo-text">
+                    <h1>Airline Reservation System</h1>
+                    <p>Tu viaje comienza aquí</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar-tabs">
+        <div class="nav-container">
+            <a href="buscar_vuelos.html" class="nav-tab">
+                <span class="icon">🔍</span> Buscar Vuelos
+            </a>
+            <a href="listado_vuelos.html" class="nav-tab">
+                <span class="icon">✈️</span> Vuelos
+            </a>
+            <a href="listado_reservas.html" class="nav-tab active" aria-current="page">
+                <span class="icon">📋</span> Mis Reservas
+            </a>
+            <a href="paquetes_turisticos.html" class="nav-tab">
+                <span class="icon">🎒</span> Paquetes
+            </a>
+            <a href="dashboard_cliente.html" class="nav-tab">
+                <span class="icon">👤</span> Perfil
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content-buscar reservas-page">
+        <section class="reservas-hero">
+            <div class="reservas-hero-content">
+                <p class="reservas-kicker">Consulta de compras</p>
+                <h2>Mis reservas</h2>
+                <p>Revisa el estado de cada compra, la fecha de emisión y el valor total asociado a tus tiquetes.</p>
+            </div>
+            <div class="reservas-hero-note">
+                <span class="hero-note-label">Fuente de datos</span>
+                <strong>Simulación local</strong>
+                <p>La lista mezcla reservas de ejemplo con la última reserva confirmada del navegador, si existe.</p>
+            </div>
+        </section>
+
+        <section class="resumen-reservas-grid" aria-label="Resumen de reservas">
+            <article class="resumen-card">
+                <span class="resumen-label">Total de reservas</span>
+                <strong id="totalReservas">0</strong>
+            </article>
+            <article class="resumen-card">
+                <span class="resumen-label">Confirmadas</span>
+                <strong id="reservasConfirmadas">0</strong>
+            </article>
+            <article class="resumen-card">
+                <span class="resumen-label">Pendientes</span>
+                <strong id="reservasPendientes">0</strong>
+            </article>
+            <article class="resumen-card">
+                <span class="resumen-label">Canceladas</span>
+                <strong id="reservasCanceladas">0</strong>
+            </article>
+        </section>
+
+        <section class="reservas-panel" aria-label="Listado de reservas">
+            <div class="reservas-panel-header">
+                <div>
+                    <h3>Listado de reservas</h3>
+                    <p>Estado, fecha de compra y valor total de cada registro.</p>
+                </div>
+                <span class="reservas-panel-badge" id="resumenCarga">0 registros</span>
+            </div>
+
+            <div class="tabla-reservas-wrapper">
+                <table class="tabla-reservas">
+                    <thead>
+                        <tr>
+                            <th scope="col">Reserva</th>
+                            <th scope="col">Ruta</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservasTableBody">
+                        <tr class="empty-row">
+                            <td colspan="6" class="empty-message">
+                                <span class="empty-icon" aria-hidden="true">📋</span>
+                                <span>No hay reservas para mostrar.</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Airline Reservation System. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../../assets/js/listado_reservas.js" defer></script>
+</body>
+</html>
