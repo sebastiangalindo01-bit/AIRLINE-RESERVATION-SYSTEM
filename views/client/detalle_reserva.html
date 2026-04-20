@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Reserva - Airline Reservation System</title>
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/layout.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="../../assets/css/pages/cliente.css">
+</head>
+<body>
+    <header class="navbar-principal">
+        <div class="navbar-container">
+            <div class="logo-section">
+                <div class="logo">✈️</div>
+                <div class="logo-text">
+                    <h1>Airline Reservation System</h1>
+                    <p>Tu viaje comienza aquí</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar-tabs">
+        <div class="nav-container">
+            <a href="buscar_vuelos.html" class="nav-tab">
+                <span class="icon">🔍</span> Buscar Vuelos
+            </a>
+            <a href="listado_vuelos.html" class="nav-tab">
+                <span class="icon">✈️</span> Vuelos
+            </a>
+            <a href="listado_reservas.html" class="nav-tab active" aria-current="page">
+                <span class="icon">📋</span> Mis Reservas
+            </a>
+            <a href="paquetes_turisticos.html" class="nav-tab">
+                <span class="icon">🎒</span> Paquetes
+            </a>
+            <a href="dashboard_cliente.html" class="nav-tab">
+                <span class="icon">👤</span> Perfil
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content-buscar detalle-reserva-page" id="detalleReservaMain">
+        <section class="detalle-reserva-hero">
+            <div>
+                <span class="detalle-reserva-codigo" id="detalleCodigo">Reserva</span>
+                <h2>Detalle de reserva</h2>
+                <p id="detalleRuta">Ruta no disponible</p>
+            </div>
+            <div>
+                <span class="hero-note-label">Estado actual</span>
+                <h2 id="detalleEstadoTexto">-</h2>
+            </div>
+        </section>
+
+        <section class="detalle-reserva-content" id="detalleReservaContent">
+            <article class="detalle-reserva-card">
+                <h3>Información general</h3>
+                <div class="detalle-reserva-grid">
+                    <div class="detalle-item">
+                        <span class="etiqueta">Código de reserva</span>
+                        <span class="valor" id="detalleCodigoCompleto">-</span>
+                    </div>
+                    <div class="detalle-item">
+                        <span class="etiqueta">Fecha de compra</span>
+                        <span class="valor" id="detalleFecha">-</span>
+                    </div>
+                    <div class="detalle-item">
+                        <span class="etiqueta">Ruta</span>
+                        <span class="valor" id="detalleRutaCompleta">-</span>
+                    </div>
+                    <div class="detalle-item">
+                        <span class="etiqueta">Valor total</span>
+                        <span class="valor" id="detalleTotal">-</span>
+                    </div>
+                    <div class="detalle-item">
+                        <span class="etiqueta">Moneda</span>
+                        <span class="valor" id="detalleMoneda">-</span>
+                    </div>
+                    <div class="detalle-item">
+                        <span class="etiqueta">Titular</span>
+                        <span class="valor" id="detalleTitular">-</span>
+                    </div>
+                </div>
+
+                <div class="detalle-tiquetes-header">
+                    <h3>Tiquetes asociados</h3>
+                    <p>Asiento, clase y precio por tiquete.</p>
+                </div>
+
+                <div class="detalle-tiquetes-lista" id="detalleTiquetesLista">
+                    <article class="tiquete-card">
+                        <span class="tiquete-label">Tiquete</span>
+                        <div class="tiquete-grid">
+                            <div class="tiquete-item">
+                                <span class="etiqueta">Asiento</span>
+                                <span class="valor">-</span>
+                            </div>
+                            <div class="tiquete-item">
+                                <span class="etiqueta">Clase</span>
+                                <span class="valor">-</span>
+                            </div>
+                            <div class="tiquete-item">
+                                <span class="etiqueta">Precio</span>
+                                <span class="valor">-</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </article>
+
+            <aside class="detalle-reserva-side">
+                <h3>Estado de la compra</h3>
+                <div class="detalle-reserva-estado">
+                    <div class="detalle-estado-visual">
+                        <span class="estado-reserva" id="detalleEstadoBadge">Pendiente</span>
+                    </div>
+                    <div class="detalle-reserva-alert" id="detalleObservacion">
+                        La reserva se muestra con la información disponible en este momento.
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="detalle-reserva-footer">
+            <a href="listado_reservas.html" class="btn btn-secondary">Volver al listado</a>
+            <div class="detalle-reserva-footer-actions">
+                <p class="detalle-reserva-feedback" id="detalleReservaFeedback" role="status" aria-live="polite" hidden></p>
+                <button type="button" class="btn btn-danger" id="btnCancelarReservaSimulada">Cancelar reserva (simulada)</button>
+            </div>
+        </section>
+
+        <section class="detalle-reserva-empty" id="detalleReservaEmpty" hidden>
+            <h3>No hay una reserva seleccionada</h3>
+            <p>Vuelve al listado de reservas y elige una para revisar su detalle.</p>
+            <a href="listado_reservas.html" class="btn btn-primary">Ir al listado</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Airline Reservation System. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../../assets/js/detalle.js" defer></script>
+</body>
+</html>

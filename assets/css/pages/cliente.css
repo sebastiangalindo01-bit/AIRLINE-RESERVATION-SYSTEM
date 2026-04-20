@@ -1000,6 +1000,533 @@
     padding: 2rem;
 }
 
+/* ========== PÁGINA LISTADO DE RESERVAS ========== */
+.reservas-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.reservas-hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.reservas-hero-content,
+.reservas-hero-note,
+.resumen-card,
+.reservas-panel {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.12);
+}
+
+.reservas-hero-content {
+    padding: 2rem;
+    border-left: 6px solid #3498db;
+}
+
+.reservas-kicker {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: #eaf4ff;
+    color: #1f6fbf;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.reservas-hero-content h2 {
+    margin: 0 0 0.75rem 0;
+    color: #1f2a44;
+    font-size: 2rem;
+}
+
+.reservas-hero-content p,
+.reservas-hero-note p,
+.reservas-panel-header p {
+    margin: 0;
+    color: #6f7b8a;
+}
+
+.reservas-hero-note {
+    padding: 1.5rem;
+    border: 1px solid #ecf0f1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(180deg, #fbfdff 0%, #f8fbff 100%);
+}
+
+.hero-note-label,
+.resumen-label,
+.reservas-panel-badge {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #7b8596;
+    font-weight: 700;
+}
+
+.reservas-hero-note strong {
+    color: #1f2a44;
+    font-size: 1.1rem;
+}
+
+.resumen-reservas-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.resumen-card {
+    padding: 1.25rem 1.5rem;
+    border-top: 4px solid #3498db;
+}
+
+.resumen-card strong {
+    display: block;
+    margin-top: 0.5rem;
+    color: #1f2a44;
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+.reservas-panel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.reservas-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.reservas-panel-header h3 {
+    margin: 0 0 0.35rem 0;
+    color: #1f2a44;
+    font-size: 1.35rem;
+}
+
+.reservas-panel-badge {
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    background: #f2f5f9;
+    color: #516070;
+    white-space: nowrap;
+}
+
+.tabla-reservas-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabla-reservas {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+.tabla-reservas thead {
+    background: #f8fafc;
+}
+
+.tabla-reservas th {
+    padding: 1rem;
+    text-align: left;
+    color: #516070;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid #e8edf3;
+}
+
+.tabla-reservas td {
+    padding: 1rem;
+    border-bottom: 1px solid #edf1f5;
+    vertical-align: top;
+    color: #2c3e50;
+}
+
+.tabla-reservas tbody tr:hover {
+    background: #fbfdff;
+}
+
+.reserva-codigo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 700;
+    color: #1f2a44;
+}
+
+.reserva-ruta {
+    display: block;
+    color: #516070;
+}
+
+.estado-reserva {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.estado-reserva::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.estado-confirmada {
+    background: #eaf7ef;
+    color: #1f8a4c;
+}
+
+.estado-pendiente {
+    background: #fff5e8;
+    color: #d27d00;
+}
+
+.estado-cancelada {
+    background: #fdecec;
+    color: #c23a2e;
+}
+
+.estado-usada {
+    background: #eef2ff;
+    color: #4b60d6;
+}
+
+.fecha-reserva {
+    color: #516070;
+    font-weight: 500;
+}
+
+.total-reserva {
+    font-weight: 800;
+    color: #1f2a44;
+}
+
+.btn-ver-detalle {
+    min-width: 120px;
+}
+
+/* ========== PÁGINA DETALLE DE RESERVA ========== */
+.detalle-reserva-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.detalle-reserva-hero,
+.detalle-reserva-card,
+.detalle-reserva-side {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.12);
+}
+
+.detalle-reserva-hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    border-left: 6px solid #3498db;
+}
+
+.detalle-reserva-hero h2 {
+    margin: 0.25rem 0 0.5rem 0;
+    color: #1f2a44;
+    font-size: 2rem;
+}
+
+.detalle-reserva-hero p {
+    margin: 0;
+    color: #6f7b8a;
+}
+
+.detalle-reserva-codigo {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: #eaf4ff;
+    color: #1f6fbf;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.detalle-reserva-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+    gap: 1rem;
+}
+
+.detalle-reserva-card,
+.detalle-reserva-side {
+    padding: 1.5rem;
+}
+
+.detalle-reserva-card h3,
+.detalle-reserva-side h3 {
+    margin: 0 0 1rem 0;
+    color: #1f2a44;
+    font-size: 1.25rem;
+}
+
+.detalle-reserva-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.detalle-item {
+    padding: 1rem;
+    border: 1px solid #edf1f5;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #fbfdff 0%, #ffffff 100%);
+}
+
+.detalle-item .etiqueta {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: #7b8596;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.detalle-item .valor {
+    color: #1f2a44;
+    font-weight: 700;
+    word-break: break-word;
+}
+
+.detalle-tiquetes-header {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #edf1f5;
+}
+
+.detalle-tiquetes-header h3 {
+    margin: 0 0 0.35rem 0;
+    color: #1f2a44;
+    font-size: 1.15rem;
+}
+
+.detalle-tiquetes-header p {
+    margin: 0;
+    color: #6f7b8a;
+}
+
+.detalle-tiquetes-lista {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.tiquete-card {
+    border: 1px solid #e8edf3;
+    border-radius: 12px;
+    padding: 1rem;
+    background: linear-gradient(180deg, #fcfdff 0%, #ffffff 100%);
+}
+
+.tiquete-label {
+    display: inline-block;
+    margin-bottom: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background: #eef4ff;
+    color: #4566b8;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.tiquete-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.tiquete-item {
+    background: #f8fafd;
+    border-radius: 10px;
+    padding: 0.65rem 0.75rem;
+}
+
+.tiquete-item .etiqueta {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #7b8596;
+    font-weight: 700;
+}
+
+.tiquete-item .valor {
+    font-size: 0.95rem;
+    color: #1f2a44;
+    font-weight: 700;
+}
+
+.detalle-reserva-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.detalle-reserva-estado {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detalle-estado-visual {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.detalle-reserva-alert {
+    padding: 1rem;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px dashed #dce4ed;
+    color: #516070;
+}
+
+.detalle-reserva-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+}
+
+.detalle-reserva-footer-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.detalle-reserva-feedback {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+.detalle-reserva-feedback.success {
+    color: #1f8a4c;
+    background: #eaf7ef;
+    border-color: #cdecd9;
+}
+
+.detalle-reserva-feedback.error {
+    color: #c23a2e;
+    background: #fdecec;
+    border-color: #f7d0cc;
+}
+
+.detalle-reserva-empty {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.12);
+}
+
+@media (max-width: 992px) {
+    .reservas-hero,
+    .resumen-reservas-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .reservas-hero,
+    .resumen-reservas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reservas-hero-content {
+        padding: 1.5rem;
+    }
+
+    .reservas-panel {
+        padding: 1.25rem;
+    }
+
+    .reservas-panel-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .detalle-reserva-hero,
+    .detalle-reserva-content,
+    .detalle-reserva-footer {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .detalle-reserva-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detalle-reserva-footer-actions {
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .detalle-reserva-footer-actions .btn {
+        width: 100%;
+    }
+
+    .tiquete-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .reserva-step-header {
     margin-bottom: 1.5rem;
     border-bottom: 1px solid #ecf0f1;
