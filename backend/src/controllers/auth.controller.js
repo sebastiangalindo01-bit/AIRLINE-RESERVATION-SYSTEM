@@ -16,6 +16,18 @@ const REQUIRED_FIELDS = [
     "password"
 ];
 
+function normalizeRole(rawRole) {
+    const normalized = String(rawRole || "cliente")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+
+    if (["admin", "administrador"].includes(normalized)) return "admin";
+    if (["agente", "agent", "asesor"].includes(normalized)) return "agente";
+    return "cliente";
+}
+
 function getMissingFields(payload) {
     return REQUIRED_FIELDS.filter((field) => {
         const value = payload[field];
@@ -120,7 +132,7 @@ export async function loginClient(req, res) {
         }
 
         const result = await pool.query(
-            `SELECT id, nombre, apellido, email, password_hash
+            `SELECT *
              FROM clientes
              WHERE email = $1
              LIMIT 1`,
@@ -144,12 +156,15 @@ export async function loginClient(req, res) {
             });
         }
 
+        const role = normalizeRole(client.rol || client.role || client.tipo_usuario || "cliente");
+
         const token = process.env.JWT_SECRET
             ? jwt.sign(
                 {
                     sub: client.id,
                     email: client.email,
-                    name: `${client.nombre} ${client.apellido}`
+                    name: `${client.nombre} ${client.apellido}`,
+                    role
                 },
                 process.env.JWT_SECRET,
                 { expiresIn: "1h" }
@@ -164,7 +179,8 @@ export async function loginClient(req, res) {
                 id: client.id,
                 nombre: client.nombre,
                 apellido: client.apellido,
-                email: client.email
+                email: client.email,
+                role
             }
         });
     } catch (error) {

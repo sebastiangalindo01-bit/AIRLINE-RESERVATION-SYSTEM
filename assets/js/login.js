@@ -1,5 +1,22 @@
 const form = document.getElementById("forLogin");
 const API_BASE_URL = "http://localhost:3000";
+const ROLE_REDIRECT = {
+    cliente: "../client/dashboard_cliente.html",
+    admin: "../admin/listado_clientes.html",
+    agente: "../agent/dashboard_agente.html"
+};
+
+function normalizeRole(rawRole) {
+    const normalized = String(rawRole || "cliente")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+
+    if (["admin", "administrador"].includes(normalized)) return "admin";
+    if (["agente", "agent", "asesor"].includes(normalized)) return "agente";
+    return "cliente";
+}
 
 if (form) {
     form.addEventListener("submit", async (event) => {
@@ -49,7 +66,10 @@ if (form) {
             }
 
             alert("Inicio de sesión exitoso.");
-            window.location.href = "../client/dashboard_cliente.html";
+            const role = normalizeRole(
+                data.client?.role || data.client?.rol || data.client?.tipo_usuario || "cliente"
+            );
+            window.location.href = ROLE_REDIRECT[role] || ROLE_REDIRECT.cliente;
         } catch (error) {
             alert("Error de red al iniciar sesión. Verifica que el backend esté corriendo.");
         } finally {
