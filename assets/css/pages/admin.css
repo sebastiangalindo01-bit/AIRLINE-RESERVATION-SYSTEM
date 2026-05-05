@@ -99,6 +99,86 @@ main {
     padding: 8px 0 28px;
 }
 
+.admin-dashboard-main {
+    display: grid;
+    gap: 22px;
+}
+
+.dashboard-intro {
+    padding: 24px 26px;
+    border: 1px solid var(--admin-border);
+    border-radius: 18px;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.96) 0%, rgba(239, 247, 255, 0.94) 100%);
+    box-shadow: var(--admin-shadow);
+}
+
+.dashboard-intro h2 {
+    margin: 0;
+    font-size: clamp(1.35rem, 2.3vw, 1.9rem);
+}
+
+.dashboard-intro p {
+    margin: 10px 0 0;
+    color: var(--admin-muted);
+    line-height: 1.5;
+}
+
+.dashboard-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dashboard-card {
+    overflow: hidden;
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    background: var(--admin-surface);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.dashboard-tile {
+    min-height: 136px;
+    padding: 12px 10px 10px;
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--admin-text);
+    background: #ffffff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.dashboard-tile:hover,
+.dashboard-tile:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.12);
+    outline: none;
+}
+
+.dashboard-tile img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+}
+
+.dashboard-tile h3 {
+    margin: 0;
+    text-align: center;
+    font-size: 0.88rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.dashboard-status {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #10b981;
+}
+
 .table-section {
     overflow-x: auto;
 }
@@ -204,6 +284,24 @@ tbody tr:last-child td {
     td {
         padding: 12px 14px;
         font-size: 0.9rem;
+    }
+
+    .dashboard-intro {
+        padding: 18px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-tile {
+        min-height: 126px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
     }
 }
 

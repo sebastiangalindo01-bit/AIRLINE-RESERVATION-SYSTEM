@@ -2,7 +2,7 @@ const form = document.getElementById("forLogin");
 const API_BASE_URL = "http://localhost:3000";
 const ROLE_REDIRECT = {
     cliente: "../client/dashboard_cliente.html",
-    admin: "../admin/listado_clientes.html",
+    admin: "../admin/dashboard_admin.html",
     agente: "../agent/dashboard_agente.html"
 };
 
