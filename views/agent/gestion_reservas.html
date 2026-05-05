@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Reservas | Agente ARS</title>
+  <link rel="stylesheet" href="../../assets/css/base.css" />
+  <link rel="stylesheet" href="../../assets/css/components.css" />
+  <link rel="stylesheet" href="../../assets/css/layout.css" />
+  <link rel="stylesheet" href="../../assets/css/pages/agente.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-top">
+      <div class="navbar-brand">
+        <div class="navbar-logo">
+          <i class="bi bi-airplane-fill" style="color:white; font-size:1.4rem;"></i>
+        </div>
+        <div class="navbar-brand-text">
+          <span class="navbar-title">Airline Reservation System</span>
+          <span class="navbar-subtitle">Panel de Agente</span>
+        </div>
+      </div>
+      <div class="navbar-auth">
+        <span class="agent-badge"><i class="bi bi-person-badge"></i> Agente</span>
+        <a href="../auth/login.html" class="btn btn-outline">
+          <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+        </a>
+      </div>
+      <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navbarMenu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <nav class="navbar-nav" id="navbarMenu">
+      <ul class="navbar-links">
+        <li><a href="dashboard_agente.html" class="nav-link"><i class="bi bi-speedometer2 nav-icon"></i> Dashboard</a></li>
+        <li><a href="gestion_reservas.html" class="nav-link nav-link--active"><i class="bi bi-journal-text nav-icon"></i> Reservas</a></li>
+        <li><a href="#" class="nav-link"><i class="bi bi-airplane nav-icon"></i> Vuelos</a></li>
+        <li><a href="#" class="nav-link"><i class="bi bi-people nav-icon"></i> Clientes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main class="agent-main">
+
+    <div class="agent-page-header">
+      <div>
+        <h1 class="agent-page-title"><i class="bi bi-journal-text"></i> Gestión de Reservas</h1>
+        <p class="agent-page-subtitle">Visualiza, confirma, cancela y asigna asientos a las reservas</p>
+      </div>
+      <div id="reservasCount" class="agent-count-badge">Cargando...</div>
+    </div>
+
+    <section class="agent-filters">
+      <div class="filter-group">
+        <label for="filterCodigo"><i class="bi bi-search"></i> Código</label>
+        <input type="text" id="filterCodigo" placeholder="Ej: RES-001" />
+      </div>
+      <div class="filter-group">
+        <label for="filterCliente"><i class="bi bi-person"></i> Cliente</label>
+        <input type="text" id="filterCliente" placeholder="Nombre del cliente" />
+      </div>
+      <div class="filter-group">
+        <label for="filterEstado"><i class="bi bi-funnel"></i> Estado</label>
+        <select id="filterEstado">
+          <option value="">Todos</option>
+          <option value="Pendiente">Pendiente</option>
+          <option value="Confirmada">Confirmada</option>
+          <option value="Cancelada">Cancelada</option>
+          <option value="Completada">Completada</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button class="btn btn-primary" id="btnFiltrar"><i class="bi bi-search"></i> Filtrar</button>
+        <button class="btn btn-secondary" id="btnLimpiar"><i class="bi bi-x-circle"></i> Limpiar</button>
+      </div>
+    </section>
+
+    <section class="reservas-lista" id="reservasLista"></section>
+
+  </main>
+
+  <!-- MODAL: ASIGNAR ASIENTO CON MAPA VISUAL -->
+  <dialog class="flight-modal modal-wide" id="modalAsiento" aria-modal="true">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 class="modal-title" id="modalAsientoTitle">Asignar Asiento</h2>
+        <button class="modal-close" id="closeModalAsiento">&times;</button>
+      </header>
+      <div class="modal-body">
+        <p class="modal-info" id="modalAsientoInfo"></p>
+
+        <!-- Leyenda -->
+        <div class="seat-legend">
+          <div class="legend-item-seat"><span class="seat-dot seat-disponible"></span> Disponible</div>
+          <div class="legend-item-seat"><span class="seat-dot seat-ocupado"></span> Ocupado</div>
+          <div class="legend-item-seat"><span class="seat-dot seat-seleccionado"></span> Seleccionado</div>
+        </div>
+
+        <!-- Cabecera columnas -->
+        <div class="seat-col-headers">
+          <span class="seat-row-num"></span>
+          <span>A</span><span>B</span><span>C</span>
+          <span class="seat-aisle"></span>
+          <span>D</span><span>E</span><span>F</span>
+        </div>
+
+        <!-- Mapa de asientos -->
+        <div class="seat-map" id="seatMap"></div>
+
+        <!-- Asiento seleccionado -->
+        <div class="seat-selected-info" id="seatSelectedInfo">
+          Haz clic en un asiento disponible
+        </div>
+
+        <div class="form-group" style="margin-top:1rem;">
+          <label class="form-label">O escribe el asiento manualmente</label>
+          <input type="text" class="form-control" id="inputAsiento" placeholder="Ej: 12A" maxlength="4" />
+          <small id="asientoError" style="color:var(--color-cancelled); display:none; margin-top:0.25rem;">
+            <i class="bi bi-exclamation-circle"></i> Este asiento ya está ocupado.
+          </small>
+        </div>
+      </div>
+      <footer class="modal-footer">
+        <button class="btn btn-primary" id="btnConfirmarAsiento"><i class="bi bi-check-circle"></i> Confirmar</button>
+        <button class="btn btn-secondary" id="btnCancelarAsiento">Cancelar</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <!-- MODAL: CONFIRMAR ACCIÓN -->
+  <dialog class="flight-modal" id="modalAccion" aria-modal="true">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 class="modal-title" id="modalAccionTitle">Confirmar acción</h2>
+        <button class="modal-close" id="closeModalAccion">&times;</button>
+      </header>
+      <div class="modal-body">
+        <p id="modalAccionMsg" style="color:var(--color-text-secondary);"></p>
+      </div>
+      <footer class="modal-footer">
+        <button class="btn btn-primary" id="btnConfirmarAccion">Sí, confirmar</button>
+        <button class="btn btn-secondary" id="btnCancelarAccion">No, volver</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <footer class="page-footer">
+    <p>Sistema de Gestión de Reservas &mdash; ARS &copy; 2026 &bull; Programación en Ambiente Web I &bull; UCEVA</p>
+  </footer>
+
+  <script src="../../assets/js/navbar.js"></script>
+  <script src="../../assets/js/gestion_reservas.js"></script>
+</body>
+</html>
