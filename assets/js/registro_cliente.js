@@ -1,4 +1,5 @@
 const form = document.getElementById("forCliente");
+const API_BASE_URL = "http://localhost:3000";
 
 if (form) {
     const countryRegions = {
@@ -243,7 +244,8 @@ if (form) {
         validateField("departamento_estado");
     });
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
         let firstInvalidField = null;
 
         Object.keys(fields).forEach((fieldName) => {
@@ -254,9 +256,62 @@ if (form) {
         });
 
         if (firstInvalidField) {
-            event.preventDefault();
             firstInvalidField.focus();
             form.reportValidity();
+            return;
+        }
+
+        const payload = {
+            tipo_documento: fields.tipo_documento.value,
+            numero_identificacion: fields.numero_identificacion.value.trim(),
+            nombre: fields.nombre.value.trim(),
+            apellido: fields.apellido.value.trim(),
+            email: fields.email.value.trim(),
+            telefono: fields.telefono.value.trim(),
+            telefono_alterno: fields.telefono_alterno.value.trim(),
+            password: fields.password.value,
+            confirm_password: fields.confirm_password.value,
+            direccion_residencia: fields.direccion_residencia.value.trim(),
+            pais: fields.pais.value,
+            departamento_estado: fields.departamento_estado.value,
+            ciudad: fields.ciudad.value.trim()
+        };
+
+        const submitButton = form.querySelector("button[type='submit']");
+        const originalButtonText = submitButton ? submitButton.textContent : "";
+
+        try {
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = "Creando cuenta...";
+            }
+
+            const response = await fetch(`${API_BASE_URL}/api/clientes/registro`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.ok) {
+                alert(data.message || "No fue posible registrar el cliente.");
+                return;
+            }
+
+            alert("Registro exitoso. Ahora puedes iniciar sesión.");
+            form.reset();
+            renderRegionsByCountry("");
+            window.location.href = "login.html";
+        } catch (error) {
+            alert("Error de red al registrar. Verifica que el backend esté corriendo.");
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         }
     });
 }
