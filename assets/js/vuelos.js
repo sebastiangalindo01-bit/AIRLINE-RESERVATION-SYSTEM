@@ -4,6 +4,7 @@ class BuscadorVuelos {
     constructor() {
         this.vuelos = [];
         this.vuelosFiltrados = [];
+        this.cargando = false;
         this.inicializar();
     }
 
@@ -11,21 +12,22 @@ class BuscadorVuelos {
     inicializar() {
         this.cargarVuelos();
         this.configurarEventos();
-        this.mostrarVuelos(this.vuelos);
     }
 
-    // Cargar vuelos desde el JSON
-    cargarVuelos() {
-        fetch('../../data/vuelos.json')
-            .then(response => response.json())
-            .then(datos => {
-                this.vuelos = datos;
-                this.mostrarVuelos(this.vuelos);
-            })
-            .catch(error => {
-                console.error('Error al cargar vuelos:', error);
-                this.mostrarError('No se pudieron cargar los vuelos');
-            });
+    // Cargar vuelos desde la API
+    async cargarVuelos() {
+        try {
+            this.cargando = true;
+            this.mostrarCargando();
+            
+            this.vuelos = await obtenerVuelos();
+            this.mostrarVuelos(this.vuelos);
+        } catch (error) {
+            console.error('Error al cargar vuelos:', error);
+            this.mostrarError('No se pudieron cargar los vuelos. Verifique que el servidor esté disponible.');
+        } finally {
+            this.cargando = false;
+        }
     }
 
     // Configurar eventos
@@ -39,20 +41,31 @@ class BuscadorVuelos {
     }
 
     // Filtrar vuelos según criterios
-    filtrarVuelos() {
-        const origen = document.getElementById('origen').value.toLowerCase();
-        const destino = document.getElementById('destino').value.toLowerCase();
-        const fecha = document.getElementById('fechaSalida').value;
+    async filtrarVuelos() {
+        if (this.cargando) return;
 
-        this.vuelosFiltrados = this.vuelos.filter(vuelo => {
-            const coincideOrigen = !origen || vuelo.ciudadOrigen.toLowerCase().includes(origen);
-            const coincideDestino = !destino || vuelo.ciudadDestino.toLowerCase().includes(destino);
-            const coincideFecha = !fecha || vuelo.fechaSalida === fecha;
+        try {
+            this.cargando = true;
+            this.mostrarCargando();
 
-            return coincideOrigen && coincideDestino && coincideFecha;
-        });
+            const origen = document.getElementById('origen').value.trim();
+            const destino = document.getElementById('destino').value.trim();
+            const fecha = document.getElementById('fechaSalida').value;
 
-        this.mostrarVuelos(this.vuelosFiltrados);
+            // Llamar a la API con filtros
+            const filtros = {};
+            if (origen) filtros.origen = origen;
+            if (destino) filtros.destino = destino;
+            if (fecha) filtros.fecha = fecha;
+
+            this.vuelosFiltrados = await obtenerVuelos(filtros);
+            this.mostrarVuelos(this.vuelosFiltrados);
+        } catch (error) {
+            console.error('Error al filtrar vuelos:', error);
+            this.mostrarError('Error al filtrar vuelos. Intente nuevamente.');
+        } finally {
+            this.cargando = false;
+        }
     }
 
     // Mostrar lista de vuelos
@@ -166,6 +179,17 @@ class BuscadorVuelos {
         contenedor.innerHTML = `
             <div class="alerta alerta-error">
                 <p>${mensaje}</p>
+            </div>
+        `;
+    }
+
+    // Mostrar estado de carga
+    mostrarCargando() {
+        const contenedor = document.getElementById('listaVuelos');
+        contenedor.innerHTML = `
+            <div class="mensaje-cargando">
+                <div class="spinner"></div>
+                <p>Cargando vuelos...</p>
             </div>
         `;
     }
