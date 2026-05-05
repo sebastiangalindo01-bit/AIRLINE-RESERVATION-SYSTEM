@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8"> <!--Hace que los caracteres especiales se muestren correctamente -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Hace que la página sea responsive, es decir, que se adapte a diferentes tamaños de pantalla -->
+        <meta name="description" content="Panel principal de administrador."> <!--Descripción de la página para motores de búsqueda y accesibilidad -->
+        <title>Panel de Administrador</title>
+        <link rel="stylesheet" href="../../assets/css/pages/admin.css">
+    </head>
+
+    <body>
+
+        <header class="admin-header">
+            <section class="admin-branding">
+                <p class="admin-kicker">Panel de administrador</p>
+                <h1 class="admin-title">Gestión de Paquetes Turísticos</h1>
+                <p class="admin-subtitle">Consulta y gestiona la información de los paquetes turísticos.</p>
+            </section>
+
+            <nav class="admin-nav" aria-label="Navegación principal del administrador">
+                <a href="dashboard_admin.html">Dashboard</a>
+                <a href="listado_clientes.html">Clientes</a>
+                <a href="listado_vuelos.html">Vuelos</a>
+                <a href="listado_destinos.html">Destinos</a>
+                <a href="../auth/login.html">Cerrar sesión</a>
+            </nav>
+        </header>
+
+        
+        <main class="admin-paquetes-main">
+            <section class="dashboard-intro" aria-labelledby="dashboardTitle">
+                <h2 id="dashboardTitle">Panel de Administrador</h2>
+                <p>Bienvenido al panel de administrador, Gestion integral de vuelos, destinos, paquetes turisticos, clientes y parametros generales del sistema.</p>
+            </section>
+        </main> 
+
+        <footer class="admin-footer">
+            <p>Sistema de Gestión de Reservas &mdash; Panel Administrativo &copy; 2026</p>
+            <p>Administración de paquetes.</p>
+        </footer>
+    </body>
+</html>
