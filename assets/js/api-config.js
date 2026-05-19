@@ -8,7 +8,9 @@ const API_CONFIG = {
   
   // Endpoints
   ENDPOINTS: {
-    VUELOS: '/api/vuelos'
+    VUELOS: '/api/vuelos',
+    RESERVAS: '/api/reservas',
+    PAYMENTS: '/api/payments'
   },
 
   // Timeouts
@@ -31,9 +33,20 @@ async function llamarAPI(ruta, opciones = {}) {
   
   const config = {
     method: 'GET',
-    headers: API_CONFIG.HEADERS,
+    headers: { ...API_CONFIG.HEADERS },
     ...opciones
   };
+
+  // Añadir Authorization si existe token en localStorage
+  try {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      config.headers = config.headers || {};
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+  } catch (e) {
+    // noop
+  }
 
   try {
     const respuesta = await fetch(url, config);

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Confirmación - Airline</title>
+	<link rel="stylesheet" href="../../assets/css/pages/cliente.css">
+</head>
+<body>
+	<main class="container">
+		<h1>Reserva confirmada</h1>
+		<section id="detalle">
+			<p id="mensaje">Cargando...</p>
+			<pre id="data" style="white-space:pre-wrap;background:#f7f7f7;padding:1rem;border-radius:6px;"></pre>
+		</section>
+		<a href="dashboard_cliente.html">Ir a mi dashboard</a>
+	</main>
+
+	<script>
+		const dataEl = document.getElementById('data');
+		const msg = document.getElementById('mensaje');
+		const txt = sessionStorage.getItem('reservaConfirmada');
+		if (!txt) {
+			msg.textContent = 'No se encontró información de la reserva. Es posible que no se haya completado el pago.';
+		} else {
+			try {
+				const d = JSON.parse(txt);
+				msg.textContent = 'Pago y reserva procesados correctamente.';
+				dataEl.textContent = JSON.stringify(d, null, 2);
+			} catch (e) {
+				msg.textContent = 'Error leyendo la información.';
+			}
+		}
+	</script>
+</body>
+</html>

@@ -268,7 +268,7 @@ input.success {
   /* Texto */
   --color-text-primary:   #0F172A;
   --color-text-secondary: #475569;
-  --color-text-muted:     #94A3B8;
+  --color-text-muted:     #0F172A; /*Cambio para que la accesibilidad quede al 100%*/
   --color-text-inverse:   #FFFFFF;
 
   /* Estados de vuelo */

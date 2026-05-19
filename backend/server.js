@@ -1,9 +1,9 @@
 'use strict';
 
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const { verificarConexionBaseDatos } = require('./src/config/database');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { testDatabaseConnection } from './src/config/db.js';
 
 // Cargar variables de entorno
 dotenv.config();
@@ -11,14 +11,19 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Validar variables de entorno críticas
+if (!process.env.JWT_SECRET) {
+  console.error('✗ FATAL: Falta la variable de entorno JWT_SECRET.');
+  process.exit(1);
+}
+
 // ====== MIDDLEWARES ======
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ====== RUTAS ======
-// Importar rutas
-const vuelosRoutes = require('./src/routes/vuelos');
+import vuelosRoutes from './src/routes/vuelos.js';
 
 // Montar rutas
 app.use('/api/vuelos', vuelosRoutes);
@@ -46,7 +51,7 @@ async function iniciarServidor() {
   try {
     // Verificar conexión a la base de datos
     console.log('Verificando conexión a la base de datos...');
-    await verificarConexionBaseDatos();
+    await testDatabaseConnection();
     console.log('✓ Conexión a PostgreSQL establecida');
 
     // Iniciar servidor
@@ -65,4 +70,4 @@ async function iniciarServidor() {
 
 iniciarServidor();
 
-module.exports = app;
+export default app;

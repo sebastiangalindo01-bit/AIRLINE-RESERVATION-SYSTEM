@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Adaptador para convertir datos de BD (snake_case) a formato frontend (camelCase)
  */
@@ -27,7 +25,4 @@ function convertirVuelosAlFormato(vuelos) {
   return vuelos.map(convertirVueloAlFormato);
 }
 
-module.exports = {
-  convertirVueloAlFormato,
-  convertirVuelosAlFormato
-};
+export { convertirVueloAlFormato, convertirVuelosAlFormato };

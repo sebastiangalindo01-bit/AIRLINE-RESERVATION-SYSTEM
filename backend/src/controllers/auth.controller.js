@@ -2,6 +2,22 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { pool } from "../config/db.js";
 
+const DEV_JWT_SECRET = "dev-jwt-secret-change-me";
+
+function getJwtSecret() {
+    const secret = process.env.JWT_SECRET;
+    if (secret && String(secret).trim() !== "") {
+        return secret;
+    }
+
+    if (process.env.NODE_ENV !== "production") {
+        console.warn("JWT_SECRET no definido; usando clave de desarrollo.");
+        return DEV_JWT_SECRET;
+    }
+
+    return null;
+}
+
 const REQUIRED_FIELDS = [
     "tipo_documento",
     "numero_identificacion",
@@ -144,21 +160,28 @@ export async function loginClient(req, res) {
             });
         }
 
-        const token = process.env.JWT_SECRET
-            ? jwt.sign(
-                {
-                    sub: client.id,
-                    email: client.email,
-                    name: `${client.nombre} ${client.apellido}`
-                },
-                process.env.JWT_SECRET,
-                { expiresIn: "1h" }
-            )
-            : null;
+        const jwtSecret = getJwtSecret();
+        if (!jwtSecret) {
+            return res.status(500).json({
+                ok: false,
+                message: 'Configuración del servidor inválida: falta JWT_SECRET'
+            });
+        }
+
+        const token = jwt.sign(
+            {
+                sub: client.id,
+                email: client.email,
+                name: `${client.nombre} ${client.apellido}`,
+                role: client.rol || client.role || 'CLIENT'
+            },
+            jwtSecret,
+            { expiresIn: '1h' }
+        );
 
         return res.json({
             ok: true,
-            message: "Inicio de sesión exitoso.",
+            message: 'Inicio de sesión exitoso.',
             token,
             client: {
                 id: client.id,

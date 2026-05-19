@@ -1,45 +1,25 @@
 {
- feature/ARS-28-Filtro-de-vuelos
   "name": "airline-reservation-system-backend",
   "version": "1.0.0",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "db:test": "node src/scripts/test-db-connection.js",
-    "test:queries": "node src/scripts/test-vuelos-query.js"
+    "test:queries": "node src/scripts/test-vuelos-query.js",
+    "db:seed-node": "node src/scripts/run_seed.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.19.2",
-    "pg": "^8.13.1"
-  }
-}
-
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/server.js",
-  "scripts": {
-    "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
+    "express-validator": "^6.15.0",
     "jsonwebtoken": "^9.0.3",
-    "pg": "^8.20.0"
+    "pg": "^8.13.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
   }
 }
- main

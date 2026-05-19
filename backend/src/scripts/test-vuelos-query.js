@@ -1,7 +1,5 @@
-'use strict';
-
-const vuelosService = require('../services/vuelosService');
-const { pool } = require('../config/database');
+import { obtenerTodosVuelos, obtenerVueloPorId, filtrarVuelos } from '../services/vuelosService.js';
+import { pool } from '../config/db.js';
 
 /**
  * Script de prueba para validar las consultas de vuelos desde el backend
@@ -17,7 +15,7 @@ async function main() {
     // ===== PRUEBA 1: Obtener todos los vuelos =====
     console.log('📋 Prueba 1: Obtener todos los vuelos');
     console.log('-'.repeat(60));
-    const todosVuelos = await vuelosService.obtenerTodosVuelos();
+    const todosVuelos = await obtenerTodosVuelos();
     console.log(`✓ Se encontraron ${todosVuelos.length} vuelos`);
     if (todosVuelos.length > 0) {
       console.log(`  Primero: ${todosVuelos[0].codigo_vuelo} (${todosVuelos[0].ciudad_origen} → ${todosVuelos[0].ciudad_destino})`);
@@ -32,7 +30,7 @@ async function main() {
     console.log('-'.repeat(60));
     if (todosVuelos.length > 0) {
       const primerVuelo = todosVuelos[0];
-      const vuelo = await vuelosService.obtenerVueloPorId(primerVuelo.id);
+      const vuelo = await obtenerVueloPorId(primerVuelo.id);
       if (vuelo) {
         console.log(`✓ Vuelo encontrado: ${vuelo.codigo_vuelo}`);
         console.log(`  Ruta: ${vuelo.ciudad_origen} → ${vuelo.ciudad_destino}`);
@@ -49,7 +47,7 @@ async function main() {
     // ===== PRUEBA 3: Filtrar por origen =====
     console.log('📋 Prueba 3: Filtrar vuelos por origen (Bogotá)');
     console.log('-'.repeat(60));
-    const vuelosBogota = await vuelosService.filtrarVuelos({ origen: 'Bogotá' });
+    const vuelosBogota = await filtrarVuelos({ origen: 'Bogotá' });
     console.log(`✓ Se encontraron ${vuelosBogota.length} vuelos desde Bogotá`);
     vuelosBogota.slice(0, 3).forEach(v => {
       console.log(`  - ${v.codigo_vuelo}: ${v.ciudad_origen} → ${v.ciudad_destino}`);
@@ -59,7 +57,7 @@ async function main() {
     // ===== PRUEBA 4: Filtrar por destino =====
     console.log('📋 Prueba 4: Filtrar vuelos por destino (Medellín)');
     console.log('-'.repeat(60));
-    const vuelosMedellin = await vuelosService.filtrarVuelos({ destino: 'Medellín' });
+    const vuelosMedellin = await filtrarVuelos({ destino: 'Medellín' });
     console.log(`✓ Se encontraron ${vuelosMedellin.length} vuelos hacia Medellín`);
     vuelosMedellin.forEach(v => {
       console.log(`  - ${v.codigo_vuelo}: ${v.ciudad_origen} → ${v.ciudad_destino}`);
@@ -69,7 +67,7 @@ async function main() {
     // ===== PRUEBA 5: Filtrar por fecha =====
     console.log('📋 Prueba 5: Filtrar vuelos por fecha (2026-04-10)');
     console.log('-'.repeat(60));
-    const vuelos10abril = await vuelosService.filtrarVuelos({ fecha: '2026-04-10' });
+    const vuelos10abril = await filtrarVuelos({ fecha: '2026-04-10' });
     console.log(`✓ Se encontraron ${vuelos10abril.length} vuelos en 2026-04-10`);
     vuelos10abril.slice(0, 3).forEach(v => {
       console.log(`  - ${v.codigo_vuelo}: Salida ${v.hora_salida}`);
@@ -79,7 +77,7 @@ async function main() {
     // ===== PRUEBA 6: Filtro combinado =====
     console.log('📋 Prueba 6: Filtro combinado (origen=Bogotá, destino=Cartagena)');
     console.log('-'.repeat(60));
-    const vuelosEspecificos = await vuelosService.filtrarVuelos({
+    const vuelosEspecificos = await filtrarVuelos({
       origen: 'Bogotá',
       destino: 'Cartagena'
     });

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pago - Airline</title>
+  <link rel="stylesheet" href="../../assets/css/pages/cliente.css">
+</head>
+<body>
+  <!-- Navbar incluido si aplicable -->
+  <main class="container">
+    <h1>Pago de Reserva</h1>
+    <section id="resumenPago">
+      <p id="infoReserva">Cargando resumen...</p>
+      <ul>
+        <li>Subtotal: <span id="subtotal"></span></li>
+        <li>Impuestos: <span id="impuestos"></span></li>
+        <li>Total: <strong id="total"></strong></li>
+      </ul>
+    </section>
+
+    <section id="acciones">
+      <button id="btnPagar">Pagar ahora</button>
+      <button id="btnVolver">Volver</button>
+    </section>
+
+    <section id="estado" hidden></section>
+  </main>
+
+  <script src="/assets/js/api-config.js"></script>
+  <script src="/assets/js/resumen_reserva.js"></script>
+  <script src="/assets/js/pago.js"></script>
+</body>
+</html>
